@@ -43,6 +43,7 @@ function makeGuess(){
     else{
         msg.textContent = "Too high, try again."
     }
+}
    function updateScore(score){
     scores.push(score);
     wins.textContent = "Total wins: " + scores.length;
@@ -51,14 +52,17 @@ function makeGuess(){
         sum += scores[i];
     }
     avgScore.textContent = "Average Score:" + (sum/scores.length).toFixed(1)
-   }
+   
 
    scores.sort(function(a,b){return(a-b)})
-   let lb = document.getElementById("leaderboard");
+   let lb = document.getElementsByName("leaderboard");
+   console.log(lb)
    for(let i = 0; i < lb.length; i++){
     if(i < scores.length){
-        lb[i].textContent = scores[i];
+        lb[i].innerHTML = scores[i];
+        console.log(lb[i].innerText)
     }
+}
    }
 function resetGame(){
     guess.value = "";
@@ -71,4 +75,4 @@ function resetGame(){
 
 }
 
-}
+
