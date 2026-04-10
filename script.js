@@ -132,7 +132,8 @@ function time(){
     }
    return month + " " + day + suffix + ", " + year + " " + hours + ":" + minutes + ":" + seconds;
 }
-  setInterval(function(){
+document.getElementById("date").textContent = time();
+setInterval(function(){
     document.getElementById("date").textContent = time();
 }, 1000);
 function updateTimers(){
