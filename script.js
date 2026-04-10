@@ -8,6 +8,7 @@ let name = ""
 let startTime = 0;
 let fastest = Infinity;
 let totalTime = 0;
+let streak = 0;
 
 document.getElementById("playBtn").addEventListener
 ("click",play)
@@ -42,6 +43,8 @@ function makeGuess(){
     guessCount++;
     if(guess == answer){
         msg.textContent = "Correct " + name + "!" + " It took " + guessCount + " tries.";
+        streak++;
+        document.getElementById("streak").textContent = "Streak: " + streak;
          updateScore(guessCount);
          updateTimers();
          resetGame();
@@ -104,6 +107,8 @@ function giveUp(){
     updateScore(range);
     updateTimers();
     resetGame();
+    streak = 0;
+    document.getElementById("streak").textContent = "Streak: " + streak;
 }
 function time(){
     let today = new Date();
@@ -146,3 +151,8 @@ function updateTimers(){
 totalTime += parseFloat(seconds);
 document.getElementById("avgTime").textContent = "Average Time: " + (totalTime / scores.length).toFixed(1) + "s";
 }
+document.getElementById("guess").addEventListener("keydown", function(event){
+    if(event.key == "Enter"){
+        makeGuess();
+    }
+});
